@@ -55,4 +55,13 @@ UIKIT_EXTERN CGPoint CGPointFromString(NSString *string);
  */
 -(void)heroAttack:(int)selected;
 
+-(void)showBlood:(NSString *)blood andPt:(CGPoint)pt;
+
+-(void)showSkillDetail:(NSString *)icon andName:(NSString *)name andDesc:(NSString *)desc;
+
+// 战斗菜单
+-(void)createNormalClickMenu;
+
+-(void)menuClose;
+
 @end

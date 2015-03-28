@@ -10,14 +10,15 @@
 #import "CCJoyStick.h"
 #import "Hero.h"
 
-@interface TileScene : CCLayer<CCJoyStickDelegate>
+@interface TileScene : CCLayer<CCJoyStickDelegate,UIAlertViewDelegate>
 
 @property(nonatomic,retain) CCTMXTiledMap* tileMap;
 @property(nonatomic,retain) Hero *hero;
 @property(nonatomic,retain) CCProgressTimer *heroHP;
+@property(nonatomic,retain) CCProgressTimer *heroEXP;
 
 -(void)createCCJoyStick;
--(void)createMap;
+//-(void)createMap;
 -(void)createHero;
 -(void)createNpc;
 -(void)createNpc2;
@@ -28,5 +29,11 @@
 - (CGPoint)tileCoordForPosition:(CGPoint)position;
 
 -(float)distanceFromPointX:(CGPoint)start distanceToPointY:(CGPoint)end;
+
+-(void)battle:(NSString *)x;
+
+//-(void)createBg;
+
+-(void)createMenus;
 
 @end

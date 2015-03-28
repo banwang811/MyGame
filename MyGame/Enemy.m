@@ -8,19 +8,16 @@
 
 #import "Enemy.h"
 #import "SimpleAudioEngine.h"
+#import "Sound.h"
 
 float enemySpeed = 350;
 
 
 @implementation Enemy
 
-@synthesize attacking;
-
 @synthesize enemyDamage,hp,state;
 
-@synthesize moveSpeed,moveFlash;
-
-@synthesize standAnimate,runAnimate,hurtAnimate,attackAnimate,deadAnimate,escapeAnimate;
+@synthesize standAnimate,runAnimate,hurtAnimate,attackAnimate,deadAnimate,escapeAnimate,etype,totalHp;
 
 @synthesize bloodProgress;
 
@@ -52,7 +49,7 @@ float enemySpeed = 350;
  *@param type 敌人类型
  */
 +(id)enemyWithType:(ENEMY_TYPE)type{
-    
+    Enemy *enemy;
     switch (type) {
             // 刀兵
         case ENEMY_SWORD:
@@ -62,7 +59,7 @@ float enemySpeed = 350;
             CCSpriteFrameCache *frameCache = [CCSpriteFrameCache sharedSpriteFrameCache];
             [frameCache addSpriteFramesWithFile:@"Sword1.plist"];
             
-            Enemy *enemy = [Enemy spriteWithSpriteFrameName:@"Sword1Stand1.png"];
+            enemy = [Enemy spriteWithSpriteFrameName:@"Sword1Stand1.png"];
             
             // 站立动作
             enemy.standAnimate = [enemy enemyAnimate:@"Sword1Stand" andCount:16 andDelay:1.0f/16.0f];
@@ -78,16 +75,15 @@ float enemySpeed = 350;
             enemy.hurtAnimate = [enemy enemyAnimate:@"Sword1Hurt" andCount:10 andDelay:1.0f/10.0f];
             
             // 刷新点,血条
+            enemy.etype = ENEMY_SWORD;
             [enemy createEnemyWithBloodAndPosition];
             enemy.hp = ENEMY_SWARD_HP; // hp
-            
-            // 移动速度
-            enemy.moveSpeed = CCRANDOM_0_1()*100 + 200;
-            enemy.moveFlash = CCRANDOM_0_1()*100;
-            
+            enemy.totalHp = ENEMY_SWARD_HP;
             // 攻击力
             enemy.enemyDamage = ENEMY_DAMAGE_1;
             enemy.debuffArray = [[NSMutableArray alloc] initWithCapacity:1];
+            
+            CCLOG(@"%d",enemy.etype);
             return enemy;
             
         }
@@ -117,16 +113,15 @@ float enemySpeed = 350;
             enemy.hurtAnimate = [enemy enemyAnimate:@"Spear1Hurt" andCount:10 andDelay:1.0f/10.0f];
             
             // 刷新点,血条
+            enemy.etype = ENEMY_SPEAR;
             [enemy createEnemyWithBloodAndPosition];
             enemy.hp = ENEMY_SPEAR_HP; // hp
-            
-            // 移动速度
-            enemy.moveSpeed = CCRANDOM_0_1()*100 + 200;
-            enemy.moveFlash = CCRANDOM_0_1()*100;
-            
+            enemy.totalHp = ENEMY_SPEAR_HP;
             // 攻击力
             enemy.enemyDamage = ENEMY_DAMAGE_2;
             enemy.debuffArray = [[NSMutableArray alloc] initWithCapacity:1];
+            
+            CCLOG(@"%d",enemy.etype);
             return enemy;
             
         }
@@ -156,16 +151,52 @@ float enemySpeed = 350;
             enemy.hurtAnimate = [enemy enemyAnimate:@"BladerHurt" andCount:8 andDelay:1.0f/8.0f];
             
             // 刷新点,血条
+            enemy.etype = ENEMY_SWORD2;
             [enemy createEnemyWithBloodAndPosition];
             enemy.hp = ENEMY_SWARD2_HP; // hp
-            
-            // 移动速度
-            enemy.moveSpeed = CCRANDOM_0_1()*100 + 200;
-            enemy.moveFlash = CCRANDOM_0_1()*100;
-            
+            enemy.totalHp = ENEMY_SWARD2_HP;
             // 攻击力
             enemy.enemyDamage = ENEMY_DAMAGE_2;
             enemy.debuffArray = [[NSMutableArray alloc] initWithCapacity:1];
+            
+            CCLOG(@"%d",enemy.etype);
+            return enemy;
+            
+        }
+            break;
+            
+        case ENEMY_ALXMEN:
+        {
+            
+            // 加载敌人plist
+            CCSpriteFrameCache *frameCache = [CCSpriteFrameCache sharedSpriteFrameCache];
+            [frameCache addSpriteFramesWithFile:@"Axeman.plist"];
+            
+            Enemy *enemy = [Enemy spriteWithSpriteFrameName:@"AxemanStand1.png"];
+            
+            // 站立动作
+            enemy.standAnimate = [enemy enemyAnimate:@"AxemanStand" andCount:20 andDelay:1.0f/20.0f];
+            // 移动动作
+            enemy.runAnimate = [enemy enemyAnimate:@"AxemanRun" andCount:20 andDelay:1.0f/20.0f];
+            // 攻击动作
+            enemy.attackAnimate = [enemy enemyAnimate:@"AxemanAttack" andCount:26 andDelay:1.0f/26.0f];
+            // 死亡动作
+            enemy.deadAnimate = [enemy enemyAnimate:@"AxemanDead" andCount:29 andDelay:1.0f/29.0f];
+            // 逃跑动作
+            enemy.escapeAnimate = [enemy enemyAnimate:@"AxemanRun" andCount:20 andDelay:1.0f/20.0f];
+            // 受伤动作
+            enemy.hurtAnimate = [enemy enemyAnimate:@"AxemanHurt" andCount:11 andDelay:1.0f/11.0f];
+            
+            // 刷新点,血条
+            enemy.etype = ENEMY_SWORD2;
+            [enemy createEnemyWithBloodAndPosition];
+            enemy.hp = ENEMY_SWARD2_HP; // hp
+            enemy.totalHp = ENEMY_SWARD2_HP;
+            // 攻击力
+            enemy.enemyDamage = ENEMY_DAMAGE_2;
+            enemy.debuffArray = [[NSMutableArray alloc] initWithCapacity:1];
+            
+            CCLOG(@"%d",enemy.etype);
             return enemy;
             
         }
@@ -195,18 +226,16 @@ float enemySpeed = 350;
             enemy.hurtAnimate = [enemy enemyAnimate:@"Boss8Hurt" andCount:5 andDelay:1.0f/5.0f];
             
             // 刷新点,血条
+            enemy.etype = ENEMY_BOSS1;
             [enemy createEnemyWithBloodAndPosition];
             enemy.hp = ENEMY_BOSS1_HP; // hp
-            
-            // 移动速度
-            enemy.moveSpeed = CCRANDOM_0_1()*50 + 100;
-            enemy.moveFlash = CCRANDOM_0_1()*50;
-            
+            enemy.totalHp = ENEMY_BOSS1_HP;
             // 攻击力
             enemy.enemyDamage = ENEMY_DAMAGE_BOSS1;
             // debuff次数
             enemy.debuffArray = [[NSMutableArray alloc] initWithCapacity:1];
             
+            CCLOG(@"%d",enemy.etype);
             return enemy;
             
         }
@@ -216,6 +245,16 @@ float enemySpeed = 350;
             break;
     }
     return nil;
+}
+
+/**
+ * 敌人执行站立动作
+ **/
+-(void)EnemyExcuteStand{
+    [self stopAllActions];
+    self.state = ENEMY_STAND; // 设置状态(站立状态)
+    [self runAction:[CCRepeatForever actionWithAction:self.standAnimate]];
+    
 }
 
 
@@ -240,15 +279,20 @@ float enemySpeed = 350;
 
 /**
  * 创建敌人血条
- * 敌人刷新点
  */
 -(void)createEnemyWithBloodAndPosition{
     
     // 随机刷出敌人的坐标
-    self.position=ccp(screenSize.width + 50.0f,CCRANDOM_0_1()*(screenSize.height - 180.0f) + 50.0f);
+//    self.position=ccp(screenSize.width + 50.0f,CCRANDOM_0_1()*(screenSize.height - 180.0f) + 50.0f);
     // 添加血条背景
     CCSprite *bloodBG = [CCSprite spriteWithFile:@"enemygray.jpg"];
-    bloodBG.position = ccp(self.contentSize.width * 0.5f, self.contentSize.height * 0.6f + 25);
+    CCLOG(@"********************************  %d",self.etype);
+    if (self.etype < ENEMY_BOSS1) {
+        bloodBG.position = ccp(self.contentSize.width * 0.5f, self.boundingBox.size.height * 0.5 + 40);
+    } else {
+        bloodBG.position = ccp(self.contentSize.width * 0.5f, self.boundingBox.size.height * 0.5 + 60);
+    }
+    bloodBG.scaleY = 1.5f;
     
     // 添加血条
     self.bloodProgress=[CCProgressTimer progressWithFile:@"enemyred.jpg"];
@@ -256,138 +300,21 @@ float enemySpeed = 350;
     self.bloodProgress.percentage =99; //当前进度
     self.bloodProgress.type=kCCProgressTimerTypeHorizontalBarLR;//进度条的显示样式
     self.bloodProgress.percentage+=1;
+    self.bloodProgress.scaleY = 1.5f;
     
-    [self addChild:bloodBG z:hero_zOrder];
-    [self addChild:self.bloodProgress z:hero_zOrder];
-    
-    [self EnemyExcuteStand];
+    [self addChild:bloodBG z:0 tag:88];
+    [self addChild:self.bloodProgress z:0 tag:99];
 }
 
-#pragma -
-#pragma enemyAction
-/**
- * 重置敌人状态
- **/
--(void)ChangeEnemyStateNone{
-    [self EnemyExcuteStand];
+-(void)removeBlood{
+    [self removeChild:[self getChildByTag:88] cleanup:YES];
+    [self removeChild:[self getChildByTag:99] cleanup:YES];
 }
 
-/**
- * 敌人执行站立动作
- **/
--(void)EnemyExcuteStand{
-    [self stopAllActions];
-    self.state = ENEMY_STAND; // 设置状态(站立状态)
-    [self runAction:[CCRepeatForever actionWithAction:self.standAnimate]];
-    
-}
 
 /**
- * 敌人移动
- * 向玩家方向移动
- * @param heroPosition 玩家坐标
+ * 敌人返回
  */
--(void)EnemyMoveToHero:(CGPoint)heroPosition{
-    if (self != nil) {
-        
-        self.moveFlash ++ ;
-        if (self.moveFlash >= self.moveSpeed) {
-            
-            // 重置刷新数
-            self.moveFlash = 0;
-            
-            // 更改敌人朝向,一直面对玩家
-            // 并同时朝玩家移动
-            float x; // x 移动量
-            float y; // y 移动量
-            
-            if (self.position.x > heroPosition.x) {
-                self.flipX = NO; // 面向左边
-                x = self.position.x - 80.0f;
-            } else{                
-                self.flipX = YES; // 面向右边
-                x = self.position.x + 80.0f;
-            }
-            
-            if (self.position.y > heroPosition.y) {
-                y = self.position.y - 10.0f;
-            } else {
-                y = self.position.y + 10.0f;
-            }
-            
-            // 已经在玩家旁边了,还等什么。。。砍死他
-            
-            if (fabs(self.position.x - heroPosition.x) <= 80 && fabs(self.position.y - heroPosition.y) <= 20) {
-                
-                self.state = ENEMY_ATTACK;
-                self.attacking = YES;
-                
-                return;
-                
-            }
-            
-            // 设置状态(跑动状态)
-            self.state = ENEMY_RUN;
-            [self stopAllActions];
-            CCMoveTo *place = [CCMoveTo actionWithDuration:1 position:ccp(x, y)];
-            // 动作执行完后还原状态
-            CCCallFuncN *func = [CCCallFuncN actionWithTarget:self selector:@selector(ChangeEnemyStateNone)];
-            CCSequence *seq = [CCSequence actions:[CCSpawn actions:self.runAnimate,place, nil],func,nil];
-            [self runAction:seq];
-        }
-    }
-    
-}
-
-/**
- *敌人执行攻击动作
- **/
--(void)EnemyExcuteAttack{
-    self.state = ENEMY_ATTACK;
-    [self stopAllActions];
-    CCCallFuncN *func = [CCCallFuncN actionWithTarget:self selector:@selector(ChangeEnemyStateNone)];
-    [self runAction:[CCSequence actions:self.attackAnimate,func, nil]];
-    
-    [[SimpleAudioEngine sharedEngine] playEffect:@"SwordHit.mp3"];
-}
-
-/**
- *敌人执行受伤动作
- *@param damage 伤害量
- **/
--(void)EnemyExcuteHurt:(float)damage{
-    
-    if (CCRANDOM_0_1()*10 < 9) {
-        self.attacking = NO;
-    }
-    
-    if (self.state == ENEMY_DEAD || self.state == ENEMY_ATTACK) {
-        return;
-    }
-    
-    [self stopAllActions];
-    self.state = ENEMY_HURT; // 设置状态(受伤状态)
-    
-    self.hp -= damage;
-    self.bloodProgress.percentage = (float)self.hp/ENEMY_SPEAR_HP * 100;
-    
-    if (self.hp > 0) {
-        // 受伤 + 受伤音效
-        [[SimpleAudioEngine sharedEngine] playEffect:@"Blood2.mp3"];
-        CCCallFuncN *func = [CCCallFuncN actionWithTarget:self selector:@selector(ChangeEnemyStateNone)];
-        [self runAction:[CCSequence actions:self.hurtAnimate,func, nil]];
-    } else {
-        // 死亡 + 受伤音效
-        self.state = ENEMY_DEAD;
-        [[SimpleAudioEngine sharedEngine] playEffect:@"maleDead1.mp3"];
-        CCCallFuncN *func = [CCCallFuncN actionWithTarget:self selector:@selector(removeEnemy)];
-        [self runAction:[CCSequence actions:self.deadAnimate,func, nil]];
-    }
-    
-    
-}
-
-
 -(void)enemyBack{
     self.flipX = NO;
     CCMoveTo *to = [CCMoveTo actionWithDuration:1 position:self.oldPt];
@@ -409,8 +336,10 @@ float enemySpeed = 350;
     self.flipX = YES;
     [self stopAllActions];
     [self runAction:[CCRepeatForever actionWithAction:self.standAnimate]];
-    
-    [(BattleScene *)self.battleScene enemyAttackOver];
+    if (self.battleScene) {
+        [(BattleScene *)self.battleScene enemyAttackOver];
+    }
+
     
 }
 -(float)runToHeroTime:(CGPoint)heroGt{
@@ -454,23 +383,28 @@ float enemySpeed = 350;
 -(void)hurtByHero:(NSString *)blood{
     int damage = [blood intValue];
     self.hp -= damage; // 血量减少
-    self.bloodProgress.percentage = (float)self.hp/ENEMY_SPEAR_HP * 100; // 血量减少
+    self.bloodProgress.percentage = (float)self.hp/self.totalHp * 100; // 血量减少
     
     CCCallFunc *call = [CCCallFunc actionWithTarget:self selector:@selector(enemyHurtOver)];
     // 还没挂
     if (self.hp > 0) {
         [self runAction:[CCSequence actions:self.hurtAnimate,call, nil]];
-    } else  {
+        [Sound playSound:@"Blood2.mp3"];
+    } else {
         // 挂了
         self.state = ENEMY_DEAD;
         CCCallFunc *ff = [CCCallFunc actionWithTarget:self selector:@selector(removeEnemy)];
         [self runAction:[CCSequence actions:self.deadAnimate,ff,call, nil]];
+        [Sound playSound:@"maleDead1.mp3"];
     }
 }
 
 -(void)enemyHurtOver{
     // 通知战斗界面,敌人已经躺了
-    [(BattleScene *)self.battleScene enemyHurtOrDead];
+    if (self.battleScene) {
+        [(BattleScene *)self.battleScene enemyHurtOrDead];
+    }
+
 }
 
 /**

@@ -15,4 +15,8 @@
 
 +(CCScene *)scene;
 
+-(void)show;
+
+-(void)createBg;
+
 @end

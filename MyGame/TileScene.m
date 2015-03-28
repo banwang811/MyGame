@@ -14,6 +14,12 @@
 #import "LotteryScene.h"
 #import "BattleResult.h"
 #import "Debuff.h"
+#import "StartScene.h"
+#import "UserData.h"
+#import "AppDelegate.h"
+#import "RootViewController.h"
+
+CCLayer *clayer;
 
 typedef enum {
     talk_no = 0,
@@ -34,11 +40,14 @@ int jd = 1;
 
 CGPoint pttt;
 
+BOOL fighting = NO;
+
 @implementation TileScene
 
 @synthesize hero;
 @synthesize tileMap;
 @synthesize heroHP;
+@synthesize heroEXP;
 
 -(void)dealloc{
     if (tileMap) {
@@ -50,6 +59,9 @@ CGPoint pttt;
     if (heroHP) {
         [heroHP release];
     }
+    if (heroEXP) {
+        [heroEXP release];
+    }
     [super dealloc];
 }
 
@@ -57,13 +69,23 @@ CGPoint pttt;
 {
 	// 'scene' is an autorelease object.
 	CCScene *scene = [CCScene node];
+    
+    clayer = [CCLayer node];
+    
+//    CCLayerColor *c = [CCLayerColor layerWithColor:ccc4(0, 0, 0, 1)];
+//    c.opacity = 160.0f;
+//    [clayer addChild:c];
+    clayer.isTouchEnabled = YES;
+    
+    [scene addChild: clayer z:1 tag:101];
 	
 	// 'layer' is an autorelease object.
 	TileScene *layer = [TileScene node];
 	
 	// add layer as a child to scene
-	[scene addChild: layer];
-	
+	[scene addChild: layer z:0 tag:100];
+    
+    
 	// return the scene
 	return scene;
 }
@@ -82,14 +104,31 @@ CGPoint pttt;
             CCLabelTTF *ttf = [CCLabelTTF labelWithString:br.result fontName:@"STHeitiK-Light" fontSize:20];
             ttf.position = show.position;
             ttf.scaleX = 0.1f;
-            [self addChild:ttf z:401 tag:999];
-            [self addChild:show z:400 tag:998];
+            [clayer addChild:ttf z:401 tag:999];
+            [clayer addChild:show z:400 tag:998];
             
             CCScaleTo *to = [CCScaleTo actionWithDuration:0.5 scaleX:0.8 scaleY:1];
             CCScaleTo *to2 = [CCScaleTo actionWithDuration:0.5 scale:1];
             
             [show runAction:to];
             [ttf runAction:to2];
+            
+            if (!br.win) {
+                self.hero.lev.hpNow = self.hero.lev.totalHp;
+                self.heroHP.percentage = 100;
+            } else {
+                self.hero.lev.hpNow -= br.hpMin;
+                self.heroHP.percentage = (float)self.hero.lev.hpNow / self.hero.lev.totalHp * 100;
+            }
+            
+            NSData *Data = [arr objectForKey:@"USERDATA"];
+            if (Data) {
+                UserData *userData = [NSKeyedUnarchiver unarchiveObjectWithData:Data];
+                userData.hpNow = self.hero.lev.hpNow;
+                
+                NSData *brData = [NSKeyedArchiver archivedDataWithRootObject:userData];
+                [arr setObject:brData forKey:@"USERDATA"];
+            }
             
             [arr removeObjectForKey:@"battleResult"];
             jd++; // 进度++
@@ -121,6 +160,7 @@ CGPoint pttt;
         }
             break;
     }
+    fighting = NO;
 }
 
 -(id) init
@@ -130,15 +170,14 @@ CGPoint pttt;
 	if( (self=[super init])) {
         
         
-        [self createBg];
-        [self createMap];
+//        [self createBg];
+//        [self createMap];
         [self createHero];
         [self createNpc];
         [self createNpc2];
         [self createBoss];
         [self createMenus];
         [self createCCJoyStick];
-        
         self.isTouchEnabled = YES;
 	}
 	return self;
@@ -162,41 +201,59 @@ CGPoint pttt;
     self.position = viewPoint;
 }
 
--(void)createBg{
+-(void)createBg:(int)type blood:(float)blood{
     CCSprite *bb = [CCSprite spriteWithFile:@"barbg.png"];
     bb.anchorPoint = ccp(0, 1);
-    bb.position = ccp(0, screenSize.height + 2);
+    bb.position = ccp(0, screenSize.height + 1);
     bb.scaleY = 0.76f;
     bb.scaleX = 0.54f;
-    [self addChild:bb];
+    [clayer addChild:bb];
     
     CCSpriteFrameCache *frameCache = [CCSpriteFrameCache sharedSpriteFrameCache];
     [frameCache addSpriteFramesWithFile:@"HudLayerSpriteFrame.plist"];
-    CCSprite *header = [CCSprite spriteWithSpriteFrameName:@"Boss7Icon.png"];
+    CCSprite *header = nil;
+    switch (type) {
+        case HERO_0:
+            header = [CCSprite spriteWithSpriteFrameName:@"AmokIcon.png"];
+            break;
+            
+        case HERO_1:
+            header = [CCSprite spriteWithSpriteFrameName:@"AmokIcon2.png"];
+            break;
+            
+        case HERO_2:
+            header = [CCSprite spriteWithSpriteFrameName:@"AmokIcon3.png"];
+            break;
+            
+        default:
+            header = [CCSprite spriteWithSpriteFrameName:@"AmokIcon.png"];
+            break;
+    }
+    
     
     CCMenuItemSprite *itemSprite = [CCMenuItemSprite itemFromNormalSprite:header selectedSprite:nil target:self selector:@selector(showDetail)];
     CCMenu *menu = [CCMenu menuWithItems:itemSprite, nil];
     menu.position = ccp(24.0f, screenSize.height - 24.0f);
-    [self addChild:menu];
+    [clayer addChild:menu];
     
     // 血条底图
     CCSprite *hpBar = [CCSprite spriteWithSpriteFrameName:@"LifeBarBackground.png"];
     hpBar.color = ccRED;
     hpBar.position = ccp(menu.position.x + 84.0f,menu.position.y);
-    [self addChild:hpBar];
+    [clayer addChild:hpBar];
     // 血条
     self.heroHP=[CCProgressTimer progressWithFile:@"heroHpbar.png"];
     heroHP.position = ccp(hpBar.position.x - 5, hpBar.position.y + 5);
     heroHP.percentage = 99; //当前进度
     heroHP.type=kCCProgressTimerTypeHorizontalBarLR;//进度条的显示样式
     heroHP.percentage += 1;
-    [self addChild:heroHP];
-//    pttt = heroHP.position;
+    heroHP.percentage = blood;
+    [clayer addChild:heroHP];
     
     CCLabelTTF *ttf = [CCLabelTTF labelWithString:@"Lv_1" fontName:@"STHeitiK-Light" fontSize:12];
     ttf.anchorPoint = ccp(0, 0.5);
     ttf.position = ccp(menu.boundingBox.size.width + 2,menu.position.y - 18);
-    [self addChild:ttf z:1 tag:lev_tag];
+    [clayer addChild:ttf z:10 tag:lev_tag];
 }
 
 -(void)showDetail{
@@ -205,12 +262,13 @@ CGPoint pttt;
     CCSprite *detail = [CCSprite spriteWithFile:@"detail.png"];
     detail.anchorPoint = ccp(0, 1);
     detail.position = ccp(0, screenSize.height - 60);
-    [self addChild:detail z:1 tag:detail_tag];
+    [clayer addChild:detail z:1 tag:detail_tag];
     
 }
 
--(void)createMap{
-    self.tileMap = [CCTMXTiledMap tiledMapWithTMXFile:@"map_1.tmx"];
+-(void)createMap:(int)map{
+    NSString *mapName = [NSString stringWithFormat:@"map_%d.tmx",map];
+    self.tileMap = [CCTMXTiledMap tiledMapWithTMXFile:mapName];
     [self addChild:self.tileMap z:-1];
     
     CCLOG(@"====================  %f,%f",self.tileMap.position.x,self.tileMap.position.y);
@@ -227,18 +285,30 @@ CGPoint pttt;
     de.position = ccp(lotteryMenu.position.x - 2, lotteryMenu.position.y);
     de.flipX = YES;
     [de runAction:de.debuffAnimate];
-    [self addChild:de z:201];
-    [self addChild:lotteryMenu z:200];
+    [clayer addChild:de z:201];
+    [clayer addChild:lotteryMenu z:200];
     
     CCSprite *cls = [CCSprite spriteWithFile:@"close.png"];
     CCMenuItemSprite *itt = [CCMenuItemSprite itemFromNormalSprite:cls selectedSprite:nil target:self selector:@selector(back)];
     CCMenu *mm = [CCMenu menuWithItems:itt, nil];
     mm.position = ccp(screenSize.width - 20 , screenSize.height * 0.9);
-    [self addChild:mm z: 5];
+    [clayer addChild:mm z: 5];
 }
 
 -(void)back{
-    [[CCDirector sharedDirector] popScene];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"小提示"
+                                                    message:nil
+                                                   delegate:self
+                                          cancelButtonTitle:@"返回游戏"
+                                          otherButtonTitles:@"主界面", nil];
+    [alert show];
+    [alert release];
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (buttonIndex != 0) {
+        [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.2f scene:[StartScene scene]]];
+    }
 }
 
 -(void)lotteryClick{
@@ -247,6 +317,27 @@ CGPoint pttt;
 
 -(void)createHero{
     
+    NSUserDefaults* arr=[NSUserDefaults standardUserDefaults];
+    NSData *Data = [arr objectForKey:@"USERDATA"];
+    int heroType = 0;
+    if (Data) {
+        UserData *userData = [NSKeyedUnarchiver unarchiveObjectWithData:Data];
+        heroType = userData.heroType;
+        self.hero = [Hero Hero:heroType];
+        self.hero.lev.level = userData.lev;
+        self.hero.lev.nowExp = userData.exp;
+        if (userData.hpNow > 0) {
+            self.hero.lev.hpNow = userData.hpNow;
+        }
+        // 头像信息
+        [self createBg:heroType blood: (float)self.hero.lev.hpNow/self.hero.lev.totalHp * 100];
+        [self createMap:userData.map];
+    } else {
+        // 头像信息
+        self.hero = [Hero Hero:heroType];
+        [self createBg:heroType blood:100];
+        [self createMap:1];
+    }
     CCTMXObjectGroup *objects = [self.tileMap objectGroupNamed:@"location"];
     NSAssert(objects != nil, @"objects group not found");
     NSMutableDictionary *start = [objects objectNamed:@"location3"];
@@ -255,19 +346,18 @@ CGPoint pttt;
     int x = [[start valueForKey:@"x"] intValue];
     int y = [[start valueForKey:@"y"] intValue];
     
-    CCLOG(@"*************** %d,%d",x,y);
-    
-    self.hero = [Hero Hero:HERO_1];
     self.hero.position = ccp(x, y);
-    [self addChild:self.hero];
-//    [self.hero heroWithBloodProcess];
+    [self addChild:self.hero z:100];
+    
     self.hero.scale = 0.6f;
     [self.hero HeroExcuteStand];
+    [self setViewpointCenter:hero.position];
 }
 
 -(void)battle:(NSString *)x{
     NSUserDefaults* arr=[NSUserDefaults standardUserDefaults];
     [arr setObject:x forKey:@"battle"];
+    
     CCScene *c = [BattleScene scene];
     [[CCDirector sharedDirector] pushScene:[CCTransitionFade transitionWithDuration:1.2f scene:c]];
 }
@@ -386,7 +476,7 @@ CGPoint pttt;
 -(void)showTitle:(NSString *)msg{
     CCLabelTTF *ha = [CCLabelTTF labelWithString:msg fontName:@"Marker Felt" fontSize:20];
     ha.position = ccp(screenSize.width * 0.5f, screenSize.height * 0.5f);
-    [self addChild:ha];
+    [clayer addChild:ha];
     CCFadeOut *f = [CCFadeOut actionWithDuration:1];
     [ha runAction:f];
 }
@@ -531,6 +621,33 @@ CGPoint pttt;
     CGPoint tilePos = [self tileCoordForPosition:glLocation];
 //    CCLOG(@"瓷砖坐标为 %f,%f",tilePos.x,tilePos.y);
     
+    if (fighting) {
+        return;
+    }
+    
+    CCTMXLayer* layer0 = [self.tileMap layerNamed:@"enemy"];
+    int tileId0 = [layer0 tileGIDAt:tilePos];
+    //    CCLOG(@"things %d",tileId);
+    
+    if (tileId0 != 0) {
+        if (!fighting) {
+            int x = arc4random() % 100 + 1;
+            CCLOG(@"随机数是 %d",x);
+            if (x < 5) {
+                fighting = YES;
+                int y  = CCRANDOM_0_1() * 2;
+                [self battle:[NSString stringWithFormat:@"%d",y]];
+                
+                CCJoyStick *ccj = (CCJoyStick *)[clayer getChildByTag:5432];
+                [ccj stopTimer];
+                [ccj setVisible:NO];
+                [ccj resetTexturePosition];
+                [self.hero HeroExcuteStand];
+                return;
+            }
+        }
+    } 
+    
     CCTMXLayer* layer = [self.tileMap layerNamed:@"things"];
     int tileId = [layer tileGIDAt:tilePos];
 //    CCLOG(@"things %d",tileId);
@@ -538,7 +655,7 @@ CGPoint pttt;
     if (tileId == 0) {
         self.hero.opacity = 250;
     } else {
-        self.hero.opacity = 190.0f;
+        self.hero.opacity = 160.0f;
     }
     
     CCTMXLayer* layer2 = [self.tileMap layerNamed:@"route"];
@@ -576,7 +693,7 @@ CGPoint pttt;
     //isCanVisible即是否可见
     //isAutoHide即是否自动隐藏（touchend即隐藏)
     //hasAnimation即是否显示摇杆复位动画
-    CCJoyStick *ccj=[CCJoyStick initWithBallRadius:25 MoveAreaRadius:100
+    CCJoyStick *ccj=[CCJoyStick initWithBallRadius:25 MoveAreaRadius:65
                                      isFollowTouch:YES isCanVisible:YES
                                         isAutoHide:YES hasAnimation:YES];
     //可选，不设置即看不见摇杆球, 透明度需要改其源码
@@ -586,18 +703,20 @@ CGPoint pttt;
     //可选，不设置即看不见连动杆
     //摇杆激活区域为基准坐标半径，默认为另一个方法，
     //设置屏幕矩形区域为激活区域setHitAreaWithRect
-    [ccj setHitAreaWithRadius:2000];
+    [ccj setHitAreaWithRadius:screenSize.width];
 //    ccj.position=CGPointMake(80,65);
 //    pttt = ccj.position;
     ccj.scale=0.6f;
     ccj.delegate=self;
-    [self addChild:ccj z:5432];
+    CCLOG(@"****************************  %@",clayer);
+    [clayer addChild:ccj z:1 tag:5432];
+//    [self addChild:ccj z:5432];
     
 }
 
 -(void)removeS{
-    [self removeChild:[self getChildByTag:998] cleanup:YES];
-    [self removeChild:[self getChildByTag:999] cleanup:YES];
+    [clayer removeChild:[clayer getChildByTag:998] cleanup:YES];
+    [clayer removeChild:[clayer getChildByTag:999] cleanup:YES];
 }
 
 // 摇杆的代理方法
@@ -646,7 +765,7 @@ CGPoint pttt;
 // 摇动时调用
 - (void) onCCJoyStickActivated:(CCNode*)sender
 {
-    [self removeChild:[self getChildByTag:detail_tag] cleanup:YES];
+    [clayer removeChild:[clayer getChildByTag:detail_tag] cleanup:YES];
 }
 
 // 摇动释放时调用

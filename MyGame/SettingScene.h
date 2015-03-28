@@ -5,9 +5,11 @@
 //  Created by yfzx on 13-11-6.
 //
 //
-
-#import "CCLayer.h"
+#import <Foundation/Foundation.h>
+#import "cocos2d.h"
 
 @interface SettingScene : CCLayer
+
++(CCScene *) scene;
 
 @end

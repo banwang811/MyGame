@@ -13,4 +13,14 @@
     
 }
 
+@property(nonatomic,retain) CCScene *loadScene;
+
++(CCScene *) scene;
+
+-(void)createScene;
+
+-(void)createSC;
+
+-(void)toScene;
+
 @end

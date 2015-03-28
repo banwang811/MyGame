@@ -9,8 +9,12 @@
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 
-@interface Sound : CCLayer {
+@interface Sound : NSObject {
     
 }
+
++(void)playSound:(NSString *)soundName;
+
++(void)playBGSound:(NSString *)soundName;
 
 @end

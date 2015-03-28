@@ -86,6 +86,9 @@ int talkCount = 0;
     CCSprite *talk1 = [CCSprite spriteWithFile:@"talk3.png"];
     talk1.position = ccp(85, 55);
     talk1.anchorPoint = ccp(0, 0.5);
+    if (screenSize.width < 500) {
+        talk1.scaleX = 0.9;
+    }
     [self addChild:talk1 z:1 tag:talk_1_box];
     [self addChild:speak1 z:1 tag:talk_1];
     // 说话内容
@@ -101,6 +104,9 @@ int talkCount = 0;
     CCSprite *talk2 = [CCSprite spriteWithFile:@"talk3.png"];
     talk2.position = ccp(screenSize.width - 85, screenSize.height - 50);
     talk2.anchorPoint = ccp(1, 0.5);
+    if (screenSize.width < 500) {
+        talk2.scaleX = 0.9;
+    }
     [self addChild:talk2 z:1 tag:talk_2_box];
     [self addChild:speak2 z:1 tag:talk_2];
     // 说话内容

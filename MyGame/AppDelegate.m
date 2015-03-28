@@ -12,10 +12,17 @@
 #import "GameConfig.h"
 #import "HelloWorldLayer.h"
 #import "RootViewController.h"
+#import "SelectScene.h"
+#import "ShowScene.h"
+#import "MainScene.h"
+#import "TileScene.h"
+#import "StartScene.h"
+
 
 @implementation AppDelegate
 
 @synthesize window;
+@synthesize viewController;
 
 - (void) removeStartupFlicker
 {
@@ -87,7 +94,7 @@
 #else
 	[director setDeviceOrientation:kCCDeviceOrientationLandscapeLeft];
 #endif
-	
+	[director setDeviceOrientation:kCCDeviceOrientationLandscapeLeft];
 	[director setAnimationInterval:1.0/60];
 	[director setDisplayFPS:YES];
 	
@@ -110,7 +117,15 @@
 	[self removeStartupFlicker];
 	
 	// Run the intro Scene
-	[[CCDirector sharedDirector] runWithScene: [HelloWorldLayer scene]];
+    NSUserDefaults* arr=[NSUserDefaults standardUserDefaults];
+    // 设置用户信息
+    if ([arr objectForKey:@"FIRST"]) {
+        [[CCDirector sharedDirector] runWithScene: [StartScene scene]];
+    } else {
+        [arr setObject:@"ddd" forKey:@"FIRST"];
+        [[CCDirector sharedDirector] runWithScene: [ShowScene scene]];
+    }
+	
 }
 
 

@@ -13,4 +13,9 @@
     
 }
 
+
++(CCScene *) scene;
+
+-(void)createScene;
+
 @end

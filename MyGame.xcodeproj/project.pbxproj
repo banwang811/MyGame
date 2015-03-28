@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		57028220182B22EB00231FA1 /* fire.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5702821F182B22EB00231FA1 /* fire.plist */; };
 		570B57E4181F95C8009DC2E2 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 570B57E3181F95C8009DC2E2 /* QuartzCore.framework */; };
 		570B57E6181F95C8009DC2E2 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 570B57E5181F95C8009DC2E2 /* OpenGLES.framework */; };
 		570B57E8181F95C8009DC2E2 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 570B57E7181F95C8009DC2E2 /* OpenAL.framework */; };
@@ -253,6 +254,14 @@
 		5722A17518224D60005835B1 /* skill_102.png in Resources */ = {isa = PBXBuildFile; fileRef = 5722A17118224D60005835B1 /* skill_102.png */; };
 		5722A17618224D60005835B1 /* skill_103.png in Resources */ = {isa = PBXBuildFile; fileRef = 5722A17218224D60005835B1 /* skill_103.png */; };
 		5722A17718224D60005835B1 /* skill_104.png in Resources */ = {isa = PBXBuildFile; fileRef = 5722A17318224D60005835B1 /* skill_104.png */; };
+		572EF8A41828D6700084339F /* StartScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 572EF8A31828D6700084339F /* StartScene.m */; };
+		572EF8A61828D6910084339F /* denglu_bj.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 572EF8A51828D6910084339F /* denglu_bj.jpg */; };
+		572EF8AE1828DD940084339F /* SelectHero.m in Sources */ = {isa = PBXBuildFile; fileRef = 572EF8AD1828DD940084339F /* SelectHero.m */; };
+		572EF8B51828DE150084339F /* LevelSelection.plist in Resources */ = {isa = PBXBuildFile; fileRef = 572EF8B31828DE140084339F /* LevelSelection.plist */; };
+		572EF8B61828DE150084339F /* LevelSelection.png in Resources */ = {isa = PBXBuildFile; fileRef = 572EF8B41828DE150084339F /* LevelSelection.png */; };
+		572EF8B91828E5B70084339F /* loadingbg.png in Resources */ = {isa = PBXBuildFile; fileRef = 572EF8B71828E5B60084339F /* loadingbg.png */; };
+		572EF8BA1828E5B70084339F /* loading.png in Resources */ = {isa = PBXBuildFile; fileRef = 572EF8B81828E5B60084339F /* loading.png */; };
+		572EF8BE1828E6000084339F /* LoadScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 572EF8BD1828E6000084339F /* LoadScene.m */; };
 		57E946C71820971B00EC13FF /* BattleResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 57E946C61820971B00EC13FF /* BattleResult.m */; };
 		57E946CB1820A06300EC13FF /* CCRadioMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 57E946CA1820A06300EC13FF /* CCRadioMenu.m */; };
 		57E946CD1820ECD700EC13FF /* skillh_1201.png in Resources */ = {isa = PBXBuildFile; fileRef = 57E946CC1820ECD600EC13FF /* skillh_1201.png */; };
@@ -262,9 +271,50 @@
 		57E946D51820F2EC00EC13FF /* Effect_Active.plist in Resources */ = {isa = PBXBuildFile; fileRef = 57E946D41820F2EC00EC13FF /* Effect_Active.plist */; };
 		57E946D71820F2F900EC13FF /* Effect_Active.png in Resources */ = {isa = PBXBuildFile; fileRef = 57E946D61820F2F900EC13FF /* Effect_Active.png */; };
 		57E946D91820F97800EC13FF /* showResult.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 57E946D81820F97800EC13FF /* showResult.jpg */; };
+		57FA0CCB1829D7C90020BE7F /* UserData.m in Sources */ = {isa = PBXBuildFile; fileRef = 57FA0CCA1829D7C90020BE7F /* UserData.m */; };
+		57FA0CD3182A0F430020BE7F /* SettingScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 57FA0CD2182A0F430020BE7F /* SettingScene.m */; };
+		57FA0CD6182A123D0020BE7F /* on.png in Resources */ = {isa = PBXBuildFile; fileRef = 57FA0CD4182A123D0020BE7F /* on.png */; };
+		57FA0CD7182A123D0020BE7F /* off.png in Resources */ = {isa = PBXBuildFile; fileRef = 57FA0CD5182A123D0020BE7F /* off.png */; };
+		57FA0CDA182A17DD0020BE7F /* Sound.m in Sources */ = {isa = PBXBuildFile; fileRef = 57FA0CD9182A17DD0020BE7F /* Sound.m */; };
+		57FA0CE5182A2A330020BE7F /* BGM1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 57FA0CE4182A2A330020BE7F /* BGM1.mp3 */; };
+		57FA0D08182A2AA10020BE7F /* BossBGM1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 57FA0CE6182A2AA10020BE7F /* BossBGM1.mp3 */; };
+		57FA0D09182A2AA10020BE7F /* attack_01.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 57FA0CE7182A2AA10020BE7F /* attack_01.mp3 */; };
+		57FA0D0A182A2AA10020BE7F /* attack_02.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 57FA0CE8182A2AA10020BE7F /* attack_02.mp3 */; };
+		57FA0D0B182A2AA10020BE7F /* attack_03.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 57FA0CE9182A2AA10020BE7F /* attack_03.mp3 */; };
+		57FA0D0C182A2AA10020BE7F /* attack_04.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 57FA0CEA182A2AA10020BE7F /* attack_04.mp3 */; };
+		57FA0D0D182A2AA10020BE7F /* attack_05.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 57FA0CEB182A2AA10020BE7F /* attack_05.mp3 */; };
+		57FA0D0E182A2AA10020BE7F /* Blood0.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 57FA0CEC182A2AA10020BE7F /* Blood0.mp3 */; };
+		57FA0D0F182A2AA10020BE7F /* Blood1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 57FA0CED182A2AA10020BE7F /* Blood1.mp3 */; };
+		57FA0D10182A2AA10020BE7F /* Blood2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 57FA0CEE182A2AA10020BE7F /* Blood2.mp3 */; };
+		57FA0D11182A2AA10020BE7F /* Boss1WarCry.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 57FA0CEF182A2AA10020BE7F /* Boss1WarCry.mp3 */; };
+		57FA0D12182A2AA10020BE7F /* breathMale2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 57FA0CF0182A2AA10020BE7F /* breathMale2.mp3 */; };
+		57FA0D13182A2AA10020BE7F /* DamakJump.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 57FA0CF1182A2AA10020BE7F /* DamakJump.mp3 */; };
+		57FA0D14182A2AA10020BE7F /* DamakVoice.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 57FA0CF2182A2AA10020BE7F /* DamakVoice.mp3 */; };
+		57FA0D15182A2AA10020BE7F /* EnemyAttackSound1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 57FA0CF3182A2AA10020BE7F /* EnemyAttackSound1.mp3 */; };
+		57FA0D16182A2AA10020BE7F /* Heartbeat.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 57FA0CF4182A2AA10020BE7F /* Heartbeat.mp3 */; };
+		57FA0D17182A2AA10020BE7F /* JebatDie.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 57FA0CF5182A2AA10020BE7F /* JebatDie.mp3 */; };
+		57FA0D18182A2AA10020BE7F /* JebatHurt.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 57FA0CF6182A2AA10020BE7F /* JebatHurt.mp3 */; };
+		57FA0D19182A2AA10020BE7F /* JebatJump.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 57FA0CF7182A2AA10020BE7F /* JebatJump.mp3 */; };
+		57FA0D1A182A2AA10020BE7F /* JebatVoice.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 57FA0CF8182A2AA10020BE7F /* JebatVoice.mp3 */; };
+		57FA0D1B182A2AA10020BE7F /* LongSword.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 57FA0CF9182A2AA10020BE7F /* LongSword.mp3 */; };
+		57FA0D1C182A2AA10020BE7F /* LostGame.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 57FA0CFA182A2AA10020BE7F /* LostGame.mp3 */; };
+		57FA0D1D182A2AA10020BE7F /* maleDead1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 57FA0CFB182A2AA10020BE7F /* maleDead1.mp3 */; };
+		57FA0D1E182A2AA10020BE7F /* maleDead2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 57FA0CFC182A2AA10020BE7F /* maleDead2.mp3 */; };
+		57FA0D1F182A2AA10020BE7F /* maleDead3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 57FA0CFD182A2AA10020BE7F /* maleDead3.mp3 */; };
+		57FA0D20182A2AA10020BE7F /* maleDead4.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 57FA0CFE182A2AA10020BE7F /* maleDead4.mp3 */; };
+		57FA0D21182A2AA10020BE7F /* MenuTransition.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 57FA0CFF182A2AA10020BE7F /* MenuTransition.mp3 */; };
+		57FA0D22182A2AA10020BE7F /* Potion.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 57FA0D00182A2AA10020BE7F /* Potion.mp3 */; };
+		57FA0D23182A2AA10020BE7F /* ShortSword.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 57FA0D01182A2AA10020BE7F /* ShortSword.mp3 */; };
+		57FA0D24182A2AA10020BE7F /* special-02.wav in Resources */ = {isa = PBXBuildFile; fileRef = 57FA0D02182A2AA10020BE7F /* special-02.wav */; };
+		57FA0D25182A2AA10020BE7F /* SultanWave.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 57FA0D03182A2AA10020BE7F /* SultanWave.mp3 */; };
+		57FA0D26182A2AA10020BE7F /* SwordHit.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 57FA0D04182A2AA10020BE7F /* SwordHit.mp3 */; };
+		57FA0D27182A2AA10020BE7F /* thunder_1.wav in Resources */ = {isa = PBXBuildFile; fileRef = 57FA0D05182A2AA10020BE7F /* thunder_1.wav */; };
+		57FA0D28182A2AA10020BE7F /* TuahSlice.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 57FA0D06182A2AA10020BE7F /* TuahSlice.mp3 */; };
+		57FA0D29182A2AA10020BE7F /* WinGame.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 57FA0D07182A2AA10020BE7F /* WinGame.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5702821F182B22EB00231FA1 /* fire.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = fire.plist; sourceTree = "<group>"; };
 		570B57DF181F95C8009DC2E2 /* MyGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		570B57E3181F95C8009DC2E2 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		570B57E5181F95C8009DC2E2 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -652,6 +702,17 @@
 		5722A17118224D60005835B1 /* skill_102.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = skill_102.png; sourceTree = "<group>"; };
 		5722A17218224D60005835B1 /* skill_103.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = skill_103.png; sourceTree = "<group>"; };
 		5722A17318224D60005835B1 /* skill_104.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = skill_104.png; sourceTree = "<group>"; };
+		572EF8A21828D6700084339F /* StartScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StartScene.h; sourceTree = "<group>"; };
+		572EF8A31828D6700084339F /* StartScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StartScene.m; sourceTree = "<group>"; };
+		572EF8A51828D6910084339F /* denglu_bj.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = denglu_bj.jpg; sourceTree = "<group>"; };
+		572EF8AC1828DD940084339F /* SelectHero.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectHero.h; sourceTree = "<group>"; };
+		572EF8AD1828DD940084339F /* SelectHero.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectHero.m; sourceTree = "<group>"; };
+		572EF8B31828DE140084339F /* LevelSelection.plist */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = LevelSelection.plist; sourceTree = "<group>"; };
+		572EF8B41828DE150084339F /* LevelSelection.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LevelSelection.png; sourceTree = "<group>"; };
+		572EF8B71828E5B60084339F /* loadingbg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loadingbg.png; sourceTree = "<group>"; };
+		572EF8B81828E5B60084339F /* loading.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loading.png; sourceTree = "<group>"; };
+		572EF8BC1828E6000084339F /* LoadScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadScene.h; sourceTree = "<group>"; };
+		572EF8BD1828E6000084339F /* LoadScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadScene.m; sourceTree = "<group>"; };
 		57E946C51820971B00EC13FF /* BattleResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BattleResult.h; sourceTree = "<group>"; };
 		57E946C61820971B00EC13FF /* BattleResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BattleResult.m; sourceTree = "<group>"; };
 		57E946C91820A06300EC13FF /* CCRadioMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCRadioMenu.h; sourceTree = "<group>"; };
@@ -663,6 +724,49 @@
 		57E946D41820F2EC00EC13FF /* Effect_Active.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Effect_Active.plist; sourceTree = "<group>"; };
 		57E946D61820F2F900EC13FF /* Effect_Active.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Effect_Active.png; sourceTree = "<group>"; };
 		57E946D81820F97800EC13FF /* showResult.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = showResult.jpg; sourceTree = "<group>"; };
+		57FA0CC91829D7C90020BE7F /* UserData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserData.h; sourceTree = "<group>"; };
+		57FA0CCA1829D7C90020BE7F /* UserData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserData.m; sourceTree = "<group>"; };
+		57FA0CD1182A0F430020BE7F /* SettingScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingScene.h; sourceTree = "<group>"; };
+		57FA0CD2182A0F430020BE7F /* SettingScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingScene.m; sourceTree = "<group>"; };
+		57FA0CD4182A123D0020BE7F /* on.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = on.png; sourceTree = "<group>"; };
+		57FA0CD5182A123D0020BE7F /* off.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = off.png; sourceTree = "<group>"; };
+		57FA0CD8182A17DD0020BE7F /* Sound.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sound.h; sourceTree = "<group>"; };
+		57FA0CD9182A17DD0020BE7F /* Sound.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Sound.m; sourceTree = "<group>"; };
+		57FA0CE4182A2A330020BE7F /* BGM1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = BGM1.mp3; sourceTree = "<group>"; };
+		57FA0CE6182A2AA10020BE7F /* BossBGM1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = BossBGM1.mp3; sourceTree = "<group>"; };
+		57FA0CE7182A2AA10020BE7F /* attack_01.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = attack_01.mp3; sourceTree = "<group>"; };
+		57FA0CE8182A2AA10020BE7F /* attack_02.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = attack_02.mp3; sourceTree = "<group>"; };
+		57FA0CE9182A2AA10020BE7F /* attack_03.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = attack_03.mp3; sourceTree = "<group>"; };
+		57FA0CEA182A2AA10020BE7F /* attack_04.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = attack_04.mp3; sourceTree = "<group>"; };
+		57FA0CEB182A2AA10020BE7F /* attack_05.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = attack_05.mp3; sourceTree = "<group>"; };
+		57FA0CEC182A2AA10020BE7F /* Blood0.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Blood0.mp3; sourceTree = "<group>"; };
+		57FA0CED182A2AA10020BE7F /* Blood1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Blood1.mp3; sourceTree = "<group>"; };
+		57FA0CEE182A2AA10020BE7F /* Blood2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Blood2.mp3; sourceTree = "<group>"; };
+		57FA0CEF182A2AA10020BE7F /* Boss1WarCry.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Boss1WarCry.mp3; sourceTree = "<group>"; };
+		57FA0CF0182A2AA10020BE7F /* breathMale2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = breathMale2.mp3; sourceTree = "<group>"; };
+		57FA0CF1182A2AA10020BE7F /* DamakJump.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = DamakJump.mp3; sourceTree = "<group>"; };
+		57FA0CF2182A2AA10020BE7F /* DamakVoice.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = DamakVoice.mp3; sourceTree = "<group>"; };
+		57FA0CF3182A2AA10020BE7F /* EnemyAttackSound1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = EnemyAttackSound1.mp3; sourceTree = "<group>"; };
+		57FA0CF4182A2AA10020BE7F /* Heartbeat.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Heartbeat.mp3; sourceTree = "<group>"; };
+		57FA0CF5182A2AA10020BE7F /* JebatDie.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = JebatDie.mp3; sourceTree = "<group>"; };
+		57FA0CF6182A2AA10020BE7F /* JebatHurt.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = JebatHurt.mp3; sourceTree = "<group>"; };
+		57FA0CF7182A2AA10020BE7F /* JebatJump.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = JebatJump.mp3; sourceTree = "<group>"; };
+		57FA0CF8182A2AA10020BE7F /* JebatVoice.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = JebatVoice.mp3; sourceTree = "<group>"; };
+		57FA0CF9182A2AA10020BE7F /* LongSword.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = LongSword.mp3; sourceTree = "<group>"; };
+		57FA0CFA182A2AA10020BE7F /* LostGame.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = LostGame.mp3; sourceTree = "<group>"; };
+		57FA0CFB182A2AA10020BE7F /* maleDead1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = maleDead1.mp3; sourceTree = "<group>"; };
+		57FA0CFC182A2AA10020BE7F /* maleDead2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = maleDead2.mp3; sourceTree = "<group>"; };
+		57FA0CFD182A2AA10020BE7F /* maleDead3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = maleDead3.mp3; sourceTree = "<group>"; };
+		57FA0CFE182A2AA10020BE7F /* maleDead4.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = maleDead4.mp3; sourceTree = "<group>"; };
+		57FA0CFF182A2AA10020BE7F /* MenuTransition.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = MenuTransition.mp3; sourceTree = "<group>"; };
+		57FA0D00182A2AA10020BE7F /* Potion.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Potion.mp3; sourceTree = "<group>"; };
+		57FA0D01182A2AA10020BE7F /* ShortSword.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = ShortSword.mp3; sourceTree = "<group>"; };
+		57FA0D02182A2AA10020BE7F /* special-02.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "special-02.wav"; sourceTree = "<group>"; };
+		57FA0D03182A2AA10020BE7F /* SultanWave.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = SultanWave.mp3; sourceTree = "<group>"; };
+		57FA0D04182A2AA10020BE7F /* SwordHit.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = SwordHit.mp3; sourceTree = "<group>"; };
+		57FA0D05182A2AA10020BE7F /* thunder_1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = thunder_1.wav; sourceTree = "<group>"; };
+		57FA0D06182A2AA10020BE7F /* TuahSlice.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TuahSlice.mp3; sourceTree = "<group>"; };
+		57FA0D07182A2AA10020BE7F /* WinGame.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = WinGame.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -732,6 +836,7 @@
 		570B57F4181F95C8009DC2E2 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				57FA0CE3182A2A250020BE7F /* sound */,
 				57156DE21823A5C300D89036 /* particle */,
 				570B5992181FAC58009DC2E2 /* png */,
 				570B5954181F95FC009DC2E2 /* default */,
@@ -1093,6 +1198,7 @@
 		570B5957181F9639009DC2E2 /* model */ = {
 			isa = PBXGroup;
 			children = (
+				57FA0CC71829D7AB0020BE7F /* userData */,
 				570B598E181FAC04009DC2E2 /* debuff */,
 				570B598A181FA961009DC2E2 /* enemy */,
 				570B5965181FA388009DC2E2 /* skill */,
@@ -1105,6 +1211,7 @@
 		570B5958181F9641009DC2E2 /* scene */ = {
 			isa = PBXGroup;
 			children = (
+				572EF8A11828D6500084339F /* startScene */,
 				57E946C81820A04E00EC13FF /* second_support */,
 				570B5986181FA904009DC2E2 /* battleScene */,
 				570B5982181FA6E7009DC2E2 /* mainScene */,
@@ -1342,6 +1449,13 @@
 		570B5A0B181FACF8009DC2E2 /* bg */ = {
 			isa = PBXGroup;
 			children = (
+				57FA0CD4182A123D0020BE7F /* on.png */,
+				57FA0CD5182A123D0020BE7F /* off.png */,
+				572EF8B71828E5B60084339F /* loadingbg.png */,
+				572EF8B81828E5B60084339F /* loading.png */,
+				572EF8B31828DE140084339F /* LevelSelection.plist */,
+				572EF8B41828DE150084339F /* LevelSelection.png */,
+				572EF8A51828D6910084339F /* denglu_bj.jpg */,
 				570BA7BA18276DCF002D16BF /* detail.png */,
 				570BA7B618273741002D16BF /* barbg.png */,
 				570B5A0C181FAD07009DC2E2 /* litte_1.png */,
@@ -1441,6 +1555,7 @@
 		57156DE21823A5C300D89036 /* particle */ = {
 			isa = PBXGroup;
 			children = (
+				5702821F182B22EB00231FA1 /* fire.plist */,
 				57156DE31823A5EC00D89036 /* dream.plist */,
 			);
 			name = particle;
@@ -1477,6 +1592,36 @@
 			name = map;
 			sourceTree = "<group>";
 		};
+		572EF8A11828D6500084339F /* startScene */ = {
+			isa = PBXGroup;
+			children = (
+				57FA0CD0182A0F090020BE7F /* settingScene */,
+				572EF8BB1828E5C50084339F /* loadScene */,
+				572EF8AB1828DC250084339F /* selectHero */,
+				572EF8A21828D6700084339F /* StartScene.h */,
+				572EF8A31828D6700084339F /* StartScene.m */,
+			);
+			name = startScene;
+			sourceTree = "<group>";
+		};
+		572EF8AB1828DC250084339F /* selectHero */ = {
+			isa = PBXGroup;
+			children = (
+				572EF8AC1828DD940084339F /* SelectHero.h */,
+				572EF8AD1828DD940084339F /* SelectHero.m */,
+			);
+			name = selectHero;
+			sourceTree = "<group>";
+		};
+		572EF8BB1828E5C50084339F /* loadScene */ = {
+			isa = PBXGroup;
+			children = (
+				572EF8BC1828E6000084339F /* LoadScene.h */,
+				572EF8BD1828E6000084339F /* LoadScene.m */,
+			);
+			name = loadScene;
+			sourceTree = "<group>";
+		};
 		57E946C4182096FC00EC13FF /* battleResult */ = {
 			isa = PBXGroup;
 			children = (
@@ -1494,6 +1639,68 @@
 				57156DD0182355D000D89036 /* radioMenu */,
 			);
 			name = second_support;
+			sourceTree = "<group>";
+		};
+		57FA0CC71829D7AB0020BE7F /* userData */ = {
+			isa = PBXGroup;
+			children = (
+				57FA0CC91829D7C90020BE7F /* UserData.h */,
+				57FA0CCA1829D7C90020BE7F /* UserData.m */,
+			);
+			name = userData;
+			sourceTree = "<group>";
+		};
+		57FA0CD0182A0F090020BE7F /* settingScene */ = {
+			isa = PBXGroup;
+			children = (
+				57FA0CD1182A0F430020BE7F /* SettingScene.h */,
+				57FA0CD2182A0F430020BE7F /* SettingScene.m */,
+				57FA0CD8182A17DD0020BE7F /* Sound.h */,
+				57FA0CD9182A17DD0020BE7F /* Sound.m */,
+			);
+			name = settingScene;
+			sourceTree = "<group>";
+		};
+		57FA0CE3182A2A250020BE7F /* sound */ = {
+			isa = PBXGroup;
+			children = (
+				57FA0CE4182A2A330020BE7F /* BGM1.mp3 */,
+				57FA0CE6182A2AA10020BE7F /* BossBGM1.mp3 */,
+				57FA0CE7182A2AA10020BE7F /* attack_01.mp3 */,
+				57FA0CE8182A2AA10020BE7F /* attack_02.mp3 */,
+				57FA0CE9182A2AA10020BE7F /* attack_03.mp3 */,
+				57FA0CEA182A2AA10020BE7F /* attack_04.mp3 */,
+				57FA0CEB182A2AA10020BE7F /* attack_05.mp3 */,
+				57FA0CEC182A2AA10020BE7F /* Blood0.mp3 */,
+				57FA0CED182A2AA10020BE7F /* Blood1.mp3 */,
+				57FA0CEE182A2AA10020BE7F /* Blood2.mp3 */,
+				57FA0CEF182A2AA10020BE7F /* Boss1WarCry.mp3 */,
+				57FA0CF0182A2AA10020BE7F /* breathMale2.mp3 */,
+				57FA0CF1182A2AA10020BE7F /* DamakJump.mp3 */,
+				57FA0CF2182A2AA10020BE7F /* DamakVoice.mp3 */,
+				57FA0CF3182A2AA10020BE7F /* EnemyAttackSound1.mp3 */,
+				57FA0CF4182A2AA10020BE7F /* Heartbeat.mp3 */,
+				57FA0CF5182A2AA10020BE7F /* JebatDie.mp3 */,
+				57FA0CF6182A2AA10020BE7F /* JebatHurt.mp3 */,
+				57FA0CF7182A2AA10020BE7F /* JebatJump.mp3 */,
+				57FA0CF8182A2AA10020BE7F /* JebatVoice.mp3 */,
+				57FA0CF9182A2AA10020BE7F /* LongSword.mp3 */,
+				57FA0CFA182A2AA10020BE7F /* LostGame.mp3 */,
+				57FA0CFB182A2AA10020BE7F /* maleDead1.mp3 */,
+				57FA0CFC182A2AA10020BE7F /* maleDead2.mp3 */,
+				57FA0CFD182A2AA10020BE7F /* maleDead3.mp3 */,
+				57FA0CFE182A2AA10020BE7F /* maleDead4.mp3 */,
+				57FA0CFF182A2AA10020BE7F /* MenuTransition.mp3 */,
+				57FA0D00182A2AA10020BE7F /* Potion.mp3 */,
+				57FA0D01182A2AA10020BE7F /* ShortSword.mp3 */,
+				57FA0D02182A2AA10020BE7F /* special-02.wav */,
+				57FA0D03182A2AA10020BE7F /* SultanWave.mp3 */,
+				57FA0D04182A2AA10020BE7F /* SwordHit.mp3 */,
+				57FA0D05182A2AA10020BE7F /* thunder_1.wav */,
+				57FA0D06182A2AA10020BE7F /* TuahSlice.mp3 */,
+				57FA0D07182A2AA10020BE7F /* WinGame.mp3 */,
+			);
+			name = sound;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1676,6 +1883,49 @@
 				57156DE41823A5EC00D89036 /* dream.plist in Resources */,
 				570BA7B718273741002D16BF /* barbg.png in Resources */,
 				570BA7BB18276DCF002D16BF /* detail.png in Resources */,
+				572EF8A61828D6910084339F /* denglu_bj.jpg in Resources */,
+				572EF8B51828DE150084339F /* LevelSelection.plist in Resources */,
+				572EF8B61828DE150084339F /* LevelSelection.png in Resources */,
+				572EF8B91828E5B70084339F /* loadingbg.png in Resources */,
+				572EF8BA1828E5B70084339F /* loading.png in Resources */,
+				57FA0CD6182A123D0020BE7F /* on.png in Resources */,
+				57FA0CD7182A123D0020BE7F /* off.png in Resources */,
+				57FA0CE5182A2A330020BE7F /* BGM1.mp3 in Resources */,
+				57FA0D08182A2AA10020BE7F /* BossBGM1.mp3 in Resources */,
+				57FA0D09182A2AA10020BE7F /* attack_01.mp3 in Resources */,
+				57FA0D0A182A2AA10020BE7F /* attack_02.mp3 in Resources */,
+				57FA0D0B182A2AA10020BE7F /* attack_03.mp3 in Resources */,
+				57FA0D0C182A2AA10020BE7F /* attack_04.mp3 in Resources */,
+				57FA0D0D182A2AA10020BE7F /* attack_05.mp3 in Resources */,
+				57FA0D0E182A2AA10020BE7F /* Blood0.mp3 in Resources */,
+				57FA0D0F182A2AA10020BE7F /* Blood1.mp3 in Resources */,
+				57FA0D10182A2AA10020BE7F /* Blood2.mp3 in Resources */,
+				57FA0D11182A2AA10020BE7F /* Boss1WarCry.mp3 in Resources */,
+				57FA0D12182A2AA10020BE7F /* breathMale2.mp3 in Resources */,
+				57FA0D13182A2AA10020BE7F /* DamakJump.mp3 in Resources */,
+				57FA0D14182A2AA10020BE7F /* DamakVoice.mp3 in Resources */,
+				57FA0D15182A2AA10020BE7F /* EnemyAttackSound1.mp3 in Resources */,
+				57FA0D16182A2AA10020BE7F /* Heartbeat.mp3 in Resources */,
+				57FA0D17182A2AA10020BE7F /* JebatDie.mp3 in Resources */,
+				57FA0D18182A2AA10020BE7F /* JebatHurt.mp3 in Resources */,
+				57FA0D19182A2AA10020BE7F /* JebatJump.mp3 in Resources */,
+				57FA0D1A182A2AA10020BE7F /* JebatVoice.mp3 in Resources */,
+				57FA0D1B182A2AA10020BE7F /* LongSword.mp3 in Resources */,
+				57FA0D1C182A2AA10020BE7F /* LostGame.mp3 in Resources */,
+				57FA0D1D182A2AA10020BE7F /* maleDead1.mp3 in Resources */,
+				57FA0D1E182A2AA10020BE7F /* maleDead2.mp3 in Resources */,
+				57FA0D1F182A2AA10020BE7F /* maleDead3.mp3 in Resources */,
+				57FA0D20182A2AA10020BE7F /* maleDead4.mp3 in Resources */,
+				57FA0D21182A2AA10020BE7F /* MenuTransition.mp3 in Resources */,
+				57FA0D22182A2AA10020BE7F /* Potion.mp3 in Resources */,
+				57FA0D23182A2AA10020BE7F /* ShortSword.mp3 in Resources */,
+				57FA0D24182A2AA10020BE7F /* special-02.wav in Resources */,
+				57FA0D25182A2AA10020BE7F /* SultanWave.mp3 in Resources */,
+				57FA0D26182A2AA10020BE7F /* SwordHit.mp3 in Resources */,
+				57FA0D27182A2AA10020BE7F /* thunder_1.wav in Resources */,
+				57FA0D28182A2AA10020BE7F /* TuahSlice.mp3 in Resources */,
+				57FA0D29182A2AA10020BE7F /* WinGame.mp3 in Resources */,
+				57028220182B22EB00231FA1 /* fire.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1803,6 +2053,12 @@
 				5722A121182203C0005835B1 /* CCMenuItemLabel2.m in Sources */,
 				5722A1591822401C005835B1 /* TileScene.m in Sources */,
 				57156DD51823560200D89036 /* CCJoyStick.m in Sources */,
+				572EF8A41828D6700084339F /* StartScene.m in Sources */,
+				572EF8AE1828DD940084339F /* SelectHero.m in Sources */,
+				572EF8BE1828E6000084339F /* LoadScene.m in Sources */,
+				57FA0CCB1829D7C90020BE7F /* UserData.m in Sources */,
+				57FA0CD3182A0F430020BE7F /* SettingScene.m in Sources */,
+				57FA0CDA182A17DD0020BE7F /* Sound.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1812,7 +2068,7 @@
 		570B594F181F95CA009DC2E2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				ARCHS = "$(ARCHS_STANDARD)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: qijun wang (C9BY5C44BR)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -1821,29 +2077,31 @@
 					"COCOS2D_DEBUG=1",
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_VERSION = "";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "AB9A8B54-4212-4BD7-8038-1C466A6BD78B";
 				SDKROOT = iphoneos;
+				VALID_ARCHS = "armv7 armv7s";
 			};
 			name = Debug;
 		};
 		570B5950181F95CA009DC2E2 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				ARCHS = "$(ARCHS_STANDARD)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: qijun wang (C9BY5C44BR)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PREPROCESSOR_DEFINITIONS = NDEBUG;
-				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_VERSION = "";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "AB9A8B54-4212-4BD7-8038-1C466A6BD78B";
 				SDKROOT = iphoneos;
+				VALID_ARCHS = "armv7 armv7s";
 			};
 			name = Release;
 		};
@@ -1851,6 +2109,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD)";
 				COMPRESS_PNG_FILES = NO;
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -1858,8 +2117,10 @@
 				GCC_PREFIX_HEADER = MyGame/Prefix.pch;
 				"GCC_THUMB_SUPPORT[arch=armv6]" = "";
 				INFOPLIST_FILE = MyGame/Resources/Info.plist;
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-lz";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1868,15 +2129,18 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD)";
 				COMPRESS_PNG_FILES = NO;
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = MyGame/Prefix.pch;
 				"GCC_THUMB_SUPPORT[arch=armv6]" = "";
 				INFOPLIST_FILE = MyGame/Resources/Info.plist;
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-lz";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				VALIDATE_PRODUCT = YES;
+				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

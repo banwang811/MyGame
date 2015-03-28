@@ -8,6 +8,7 @@
 
 #import "ShowScene.h"
 #import "SelectScene.h"
+#import "StartScene.h"
 
 int nowScene = 1;
 
@@ -54,7 +55,7 @@ int nowScene = 1;
 -(void)show{
     self.isTouchEnabled = NO;
     if (nowScene > 5) {
-        [[CCDirector sharedDirector] pushScene:[CCTransitionFade transitionWithDuration:1.2f scene:[SelectScene scene]]];
+        [[CCDirector sharedDirector] pushScene:[CCTransitionFade transitionWithDuration:1.2f scene:[StartScene scene]]];
         return;
     }
     [self removeChild:[self getChildByTag:100] cleanup:YES];
@@ -64,7 +65,7 @@ int nowScene = 1;
     show.scale = 0.1f;
     [self addChild:show z:1 tag:100];
     CCCallFunc *func = [CCCallFunc actionWithTarget:self selector:@selector(showOver)];
-    CCScaleTo *to = [CCScaleTo actionWithDuration:0.5 scale:1];
+    CCScaleTo *to = [CCScaleTo actionWithDuration:0.5 scale: 0.8];
     [show runAction:[CCSequence actions:to,func, nil]];
     nowScene ++;
 }

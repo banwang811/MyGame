@@ -18,16 +18,17 @@ typedef enum{
     ENEMY_SWORD = 0, // 刀兵
     ENEMY_SPEAR = 1, // 枪兵
     ENEMY_SWORD2 = 2, // 刀兵2
+    ENEMY_ALXMEN = 3, 
     ENEMY_BOSS1 = 10, // boss
     
 } ENEMY_TYPE;
 
 typedef enum {
     
-    ENEMY_SPEAR_HP = 180,
-    ENEMY_SWARD_HP = 200,
-    ENEMY_SWARD2_HP = 250,
-    ENEMY_BOSS1_HP = 500,
+    ENEMY_SPEAR_HP = 10,
+    ENEMY_SWARD_HP = 15,
+    ENEMY_SWARD2_HP = 15,
+    ENEMY_BOSS1_HP = 20,
     
 } ENEMY_HP;
 
@@ -42,31 +43,23 @@ typedef enum {
 } ENEMY_STATE;
 
 typedef enum {
-    ENEMY_DAMAGE_1 = 20,
-    ENEMY_DAMAGE_2 = 40,
-    ENEMY_DAMAGE_BOSS1 = 100,
+    ENEMY_DAMAGE_1 = 1,
+    ENEMY_DAMAGE_2 = 2,
+    ENEMY_DAMAGE_BOSS1 = 3,
 } ENEMY_DAMAGE;
 
 @interface Enemy : CCSprite {
     
 }
-
-@property(nonatomic,retain) NSMutableArray *debuffArray;
-
-@property(nonatomic,assign) id battleScene;
-
-@property(nonatomic,assign) CGPoint oldPt;
-
-@property(nonatomic,assign) BOOL attacking; // 攻击中
-
-@property(nonatomic,assign) ENEMY_DAMAGE enemyDamage; // 攻击力
+@property(nonatomic,assign) id battleScene; // 战斗场景
+@property(nonatomic,assign) CGPoint oldPt; // 原来的坐标
 
 @property(nonatomic,assign) int hp; // 血量
+@property(nonatomic,retain) CCProgressTimer *bloodProgress; // 血条
+@property(nonatomic,assign) ENEMY_DAMAGE enemyDamage; // 攻击力
 
 @property(nonatomic,assign) ENEMY_STATE state; // 敌人状态
-
-@property(nonatomic,assign) int moveSpeed; // 移动速度
-@property(nonatomic,assign) int moveFlash; // 刷新帧数
+@property(nonatomic,retain) NSMutableArray *debuffArray; // debuff组
 
 @property(nonatomic,retain) CCAnimate *standAnimate; // 站立动作
 @property(nonatomic,retain) CCAnimate *runAnimate;  // 跑动动作
@@ -75,8 +68,11 @@ typedef enum {
 @property(nonatomic,retain) CCAnimate *deadAnimate;  // 死亡动作
 @property(nonatomic,retain) CCAnimate *escapeAnimate; // 逃跑动作
 
-@property(nonatomic,retain) CCProgressTimer *bloodProgress; // 血条
+@property(nonatomic,assign) ENEMY_TYPE etype;
+@property(nonatomic,assign) int totalHp;
 
+
+// 两点距离
 -(float)distanceFromPointX:(CGPoint)start distanceToPointY:(CGPoint)end;
 
 /**
@@ -94,38 +90,23 @@ typedef enum {
 -(CCAnimate *)enemyAnimate:(NSString *)fileName andCount:(int)count andDelay:(float)delay;
 
 /**
- * 创建敌人血条
- * 敌人刷新点
- */
--(void)createEnemyWithBloodAndPosition;
-
-/**
- * 重置敌人状态
- **/
--(void)ChangeEnemyStateNone;
-
-/**
  *敌人执行站立动作
  **/
 -(void)EnemyExcuteStand;
 
 /**
- * 敌人移动
- * 向玩家方向移动
- * @param heroPosition 玩家坐标
+ * 创建敌人血条
+ * 敌人刷新点
  */
--(void)EnemyMoveToHero:(CGPoint)heroPosition;
+-(void)createEnemyWithBloodAndPosition;
+
+-(void)removeBlood;
 
 /**
- *敌人执行受伤动作
- *@param damage 伤害量
- **/
--(void)EnemyExcuteHurt:(float)damage;
-
-/**
- *敌人执行攻击动作
- **/
--(void)EnemyExcuteAttack;
+ * 玩家归位,面对敌人
+ * 执行站立动作
+ */
+-(void)backNormal;
 
 -(void)enemyBack;
 

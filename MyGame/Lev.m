@@ -10,4 +10,13 @@
 
 @implementation Lev
 
+@synthesize level;
+@synthesize hpNow;
+@synthesize totalHp;
+@synthesize ATN;
+@synthesize DEF;
+@synthesize INT;
+@synthesize nowExp;
+@synthesize levExp;
+
 @end

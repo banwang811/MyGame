@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" width="50" height="36" tilewidth="16" tileheight="16">
  <tileset firstgid="1" name="2153846521791372140" tilewidth="16" tileheight="16">
-  <image source="../Downloads/pic201102_%e6%a2%a6%e5%b9%bb%e8%a5%bf%e6%b8%b8%e5%94%af%e7%be%8e%e7%89%88%e5%8d%81%e4%ba%8c%e9%97%a8%e6%b4%be%e5%9c%b0%e5%9b%be/2153846521791372140.jpg" width="800" height="600"/>
+  <image source="2153846521791372140.jpg" width="800" height="600"/>
  </tileset>
  <layer name="Tile Layer 2" width="50" height="36">
   <data encoding="base64" compression="zlib">

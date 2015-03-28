@@ -13,4 +13,10 @@
     
 }
 
++(CCScene *) scene;
+
+-(void)createScene;
+
+-(void)createMenu_play;
+
 @end
